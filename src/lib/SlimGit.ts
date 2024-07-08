@@ -53,12 +53,16 @@ class SlimGit {
 
   public getRemoteUrl() {
     const configPath = `${this.#gitDirectory}${posix.sep}config`
+    log('Getting remote URL from config file:', { configPath })
 
     if (!fs.existsSync(configPath)) {
+      log('Config file does not exist')
       return null
     }
 
     const configContent = fs.readFileSync(configPath, 'utf8').trim()
+    log('Config content:', { configContent })
+
     /**
      * @example
      *
@@ -66,8 +70,10 @@ class SlimGit {
      *   url = 'https://github.com/<org>/<repo>.git'
      */
     const urlMatch = configContent.match(/url = (.+)/)
+    log('URL match:', { urlMatch })
 
     if (!urlMatch || urlMatch.length < 2) {
+      log('URL could not be parsed')
       return null
     }
 
@@ -75,7 +81,26 @@ class SlimGit {
   }
 
   public getTag() {
-    //TODO: Implement this
+    const tagsPath = `${this.#gitDirectory}${posix.sep}refs${posix.sep}tags`
+    log('Getting tags from tags directory:', { tagsPath })
+
+    if (!fs.existsSync(tagsPath)) {
+      log('Tags directory does not exist')
+      return null
+    }
+
+    const tags = fs.readdirSync(tagsPath)
+    log('Tags:', { tags })
+
+    if (!tags.length) {
+      log('No tags found')
+      return null
+    }
+
+    const latestTag = tags[tags.length - 1]
+    log('Latest tag:', { latestTag })
+
+    return latestTag
   }
 
   public isDirty() {
