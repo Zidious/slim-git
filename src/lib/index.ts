@@ -13,3 +13,7 @@ console.log(branchName)
 const defaultBranchName = git.getDefaultBranchName()
 
 console.log(defaultBranchName)
+
+const remoteUrl = git.getRemoteUrl()
+
+console.log(remoteUrl)

@@ -1,4 +1,5 @@
 import fs from 'fs'
+import { posix } from 'path'
 import debug from 'debug'
 
 const log = debug('slim-git')
@@ -16,7 +17,7 @@ class SlimGit {
 
   constructor({ gitDirectory }: Options = { gitDirectory: process.cwd() }) {
     log('Initializing SlimGit with options:', { gitDirectory })
-    this.#gitDirectory = `${gitDirectory}/.git`
+    this.#gitDirectory = `${gitDirectory}${posix.sep}.git`
   }
 
   public isGitDirectory(): boolean {
@@ -27,7 +28,7 @@ class SlimGit {
   }
 
   public getBranchName(): string | null {
-    const headFile = `${this.#gitDirectory}/HEAD`
+    const headFile = `${this.#gitDirectory}${posix.sep}HEAD`
     log('Getting branch name from HEAD file:', { headFile })
 
     const branchName = this.parseBranchFile(headFile)
@@ -38,7 +39,9 @@ class SlimGit {
 
   public getDefaultBranchName(): string | null {
     //TODO: Support other cases than origin
-    const headFile = `${this.#gitDirectory}/refs/remotes/origin/HEAD`
+    const headFile = `${this.#gitDirectory}${posix.sep}refs${posix.sep}remotes${
+      posix.sep
+    }origin${posix.sep}HEAD`
     log('Getting default branch name from HEAD file:', { headFile })
 
     const defaultBranchName = this.parseBranchFile(headFile)
@@ -52,6 +55,21 @@ class SlimGit {
   }
 
   public getRemoteUrl() {
+    const configPath = `${this.#gitDirectory}${posix.sep}config`
+
+    if (!fs.existsSync(configPath)) {
+      return null
+    }
+
+    const configContent = fs.readFileSync(configPath, 'utf8').trim()
+    const urlMatch = configContent.match(/url = (.+)/)
+
+    if (!urlMatch) {
+      return null
+    }
+
+    return urlMatch[1]
+
     //TODO: Implement this
   }
 
