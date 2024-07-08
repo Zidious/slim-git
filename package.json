@@ -5,10 +5,14 @@
   "main": "dist/index.js",
   "author": "Gabe Olesen",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
     "debug": "^4.3.5"
   },
   "devDependencies": {
+    "@types/debug": "^4.1.12",
     "@types/node": "^20.14.10",
     "typescript": "^5.5.3"
   }
