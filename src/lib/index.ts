@@ -1,15 +1,15 @@
-import SlimGit from "./SlimGit";
+import SlimGit from './SlimGit'
 
-const git = new SlimGit();
+const git = new SlimGit()
 
-const isGitDir = git.isGitDirectory();
+const isGitDir = git.isGitDirectory()
 
-console.log(isGitDir);
+console.log(isGitDir)
 
-const branchName = git.getBranchName();
+const branchName = git.getBranchName()
 
-console.log(branchName);
+console.log(branchName)
 
-const defaultBranchName = git.getDefaultBranchName();
+const defaultBranchName = git.getDefaultBranchName()
 
-console.log(defaultBranchName);
+console.log(defaultBranchName)
