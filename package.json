@@ -1,0 +1,15 @@
+{
+  "name": "git-slim",
+  "version": "1.0.0",
+  "description": "A slim implementation of git for various commands",
+  "main": "dist/index.js",
+  "author": "Gabe Olesen",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "simple-git": "^3.25.0"
+  }
+}
