@@ -17,3 +17,7 @@ console.log(defaultBranchName)
 const remoteUrl = git.getRemoteUrl()
 
 console.log(remoteUrl)
+
+const isDirty = git.isDirty()
+
+console.log(isDirty)

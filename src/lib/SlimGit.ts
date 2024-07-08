@@ -79,7 +79,17 @@ class SlimGit {
   }
 
   public isDirty() {
-    //TODO: Implement this
+    const indexFile = `${this.#gitDirectory}${posix.sep}index`
+
+    if (!fs.existsSync(indexFile)) {
+      return null
+    }
+
+    const indexContent = fs.readFileSync(indexFile, 'utf8')
+
+    console.log(indexContent)
+
+    return false
   }
 
   private parseBranchFile(branchFile: string): string | null {
