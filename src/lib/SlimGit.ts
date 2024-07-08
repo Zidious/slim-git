@@ -12,9 +12,6 @@ interface Options {
 class SlimGit {
   #gitDirectory: string
 
-  // TODO: might have to support Windows so / might not be the best separator here
-  // might have to use posix.sep or something :shrug:
-
   constructor({ gitDirectory }: Options = { gitDirectory: process.cwd() }) {
     log('Initializing SlimGit with options:', { gitDirectory })
     this.#gitDirectory = `${gitDirectory}${posix.sep}.git`
