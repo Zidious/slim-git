@@ -9,6 +9,11 @@ interface Options {
   gitDirectory: string
 }
 
+// TODOs left
+// - TODO: Add getCommitInfo method
+// - TODO:: finish isDirty method
+// - TODO: Add tests
+
 class SlimGit {
   #gitDirectory: string
 
@@ -111,8 +116,6 @@ class SlimGit {
     }
 
     const indexContent = fs.readFileSync(indexFile, 'utf8')
-
-    console.log(indexContent)
 
     return false
   }
