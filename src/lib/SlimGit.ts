@@ -67,13 +67,11 @@ class SlimGit {
      */
     const urlMatch = configContent.match(/url = (.+)/)
 
-    if (!urlMatch) {
+    if (!urlMatch || urlMatch.length < 2) {
       return null
     }
 
     return urlMatch[1]
-
-    //TODO: Implement this
   }
 
   public getTag() {
