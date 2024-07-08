@@ -66,7 +66,7 @@ class SlimGit {
      * @example
      *
      * [remote "origin"]
-     *   url = 'https://github.com/dequelabs/<repo>.git'
+     *   url = 'https://github.com/<org>/<repo>.git'
      */
     const urlMatch = configContent.match(/url = (.+)/)
 
