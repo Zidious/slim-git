@@ -62,6 +62,12 @@ class SlimGit {
     }
 
     const configContent = fs.readFileSync(configPath, 'utf8').trim()
+    /**
+     * @example
+     *
+     * [remote "origin"]
+     *   url = 'https://github.com/dequelabs/<repo>.git'
+     */
     const urlMatch = configContent.match(/url = (.+)/)
 
     if (!urlMatch) {
